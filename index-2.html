@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Your CSS file -->
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Checkout</h1>
+        <form id="payment-form">
+            <div id="card-element"></div> <!-- Stripe's card element will be inserted here -->
+            <button type="submit">Pay Now</button>
+        </form>
+        <div id="card-errors" role="alert"></div> <!-- Display error messages here -->
+    </div>
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_live_51Q9AS008cXjj8mtLeezGGvvnnZiY1g39501zYx6o4xHRmgLQ8PTQHrW9It9Ks65j6hijLHPHPduYpinj3STEv9VB00XjAOewwP'); // Correct format
+
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        // Handle form submission
+        const form = document.getElementById('payment-form');
+        form.addEventListener('submit', async (event
